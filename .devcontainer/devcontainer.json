@@ -1,0 +1,14 @@
+{
+    "name": "CuraLab",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+    "features": {
+        "ghcr.io/devcontainers/features/php:1": {
+            "version": "8.2",
+            "installComposer": true
+        },
+        "ghcr.io/devcontainers/features/mysql:1": {}
+    },
+    "postCreateCommand": "bash .devcontainer/setup.sh",
+    "postStartCommand": "bash .devcontainer/start.sh",
+    "forwardPorts": [8000, 3306]
+}
