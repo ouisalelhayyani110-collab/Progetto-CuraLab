@@ -2,25 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // L'ordine è fondamentale: le tabelle con FK devono essere
+        // popolate dopo le tabelle a cui fanno riferimento.
+        $this->call([
+            SpecializzazioniSeeder::class, // nessuna FK
+            SediSeeder::class,             // nessuna FK
+            ServiziSeeder::class,          // FK → specializzazioni
+            MediciSeeder::class,           // FK → specializzazioni
+            MedicoSedeSeeder::class,       // FK → medici, sedi
+            MedicoServizioSeeder::class,   // FK → medici, servizi
+            DisponibilitaSeeder::class,    // FK → medici, sedi
+            PazientiSeeder::class,         // nessuna FK
+            AppuntamentiSeeder::class,     // FK → pazienti, medici, servizi, sedi
         ]);
     }
 }
-
