@@ -43,3 +43,12 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON curalab.* TO 'curalab'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 echo "=== Setup completato! ==="
+
+# Aggiorna APP_URL con l'URL del Codespace corrente.
+# Le variabili CODESPACE_NAME e GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN
+# sono disponibili automaticamente in ogni Codespace GitHub.
+if [ -n "$CODESPACE_NAME" ]; then
+    CODESPACE_URL="https://${CODESPACE_NAME}-8000.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}"
+    sed -i "s|APP_URL=http://localhost|APP_URL=${CODESPACE_URL}|" .env
+    echo "APP_URL impostato a: ${CODESPACE_URL}"
+fi
