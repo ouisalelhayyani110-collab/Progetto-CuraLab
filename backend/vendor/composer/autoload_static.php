@@ -133,6 +133,7 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
             'Laravel\\Sail\\' => 13,
             'Laravel\\Prompts\\' => 16,
             'Laravel\\Pail\\' => 13,
+            'Laravel\\Breeze\\' => 15,
         ),
         'I' =>
         array (
@@ -434,6 +435,10 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
         array (
             0 => __DIR__ . '/..' . '/laravel/pail/src',
         ),
+        'Laravel\\Breeze\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/breeze/src',
+        ),
         'Illuminate\\Support\\' =>
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -532,7 +537,15 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Appuntamento' => __DIR__ . '/../..' . '/app/Models/Appuntamento.php',
+        'App\\Models\\Disponibilita' => __DIR__ . '/../..' . '/app/Models/Disponibilita.php',
+        'App\\Models\\Medico' => __DIR__ . '/../..' . '/app/Models/Medico.php',
+        'App\\Models\\Paziente' => __DIR__ . '/../..' . '/app/Models/Paziente.php',
+        'App\\Models\\RichiestaContatto' => __DIR__ . '/../..' . '/app/Models/RichiestaContatto.php',
+        'App\\Models\\Sede' => __DIR__ . '/../..' . '/app/Models/Sede.php',
+        'App\\Models\\Servizio' => __DIR__ . '/../..' . '/app/Models/Servizio.php',
+        'App\\Models\\Specializzazione' => __DIR__ . '/../..' . '/app/Models/Specializzazione.php',
+        'App\\Models\\TokenVerifica' => __DIR__ . '/../..' . '/app/Models/TokenVerifica.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
@@ -657,7 +670,16 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
+        'Database\\Seeders\\AppuntamentiSeeder' => __DIR__ . '/../..' . '/database/seeders/AppuntamentiSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\DisponibilitaSeeder' => __DIR__ . '/../..' . '/database/seeders/DisponibilitaSeeder.php',
+        'Database\\Seeders\\MediciSeeder' => __DIR__ . '/../..' . '/database/seeders/MediciSeeder.php',
+        'Database\\Seeders\\MedicoSedeSeeder' => __DIR__ . '/../..' . '/database/seeders/MedicoSedeSeeder.php',
+        'Database\\Seeders\\MedicoServizioSeeder' => __DIR__ . '/../..' . '/database/seeders/MedicoServizioSeeder.php',
+        'Database\\Seeders\\PazientiSeeder' => __DIR__ . '/../..' . '/database/seeders/PazientiSeeder.php',
+        'Database\\Seeders\\SediSeeder' => __DIR__ . '/../..' . '/database/seeders/SediSeeder.php',
+        'Database\\Seeders\\ServiziSeeder' => __DIR__ . '/../..' . '/database/seeders/ServiziSeeder.php',
+        'Database\\Seeders\\SpecializzazioniSeeder' => __DIR__ . '/../..' . '/database/seeders/SpecializzazioniSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -2994,6 +3016,12 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Laravel\\Breeze\\BreezeServiceProvider' => __DIR__ . '/..' . '/laravel/breeze/src/BreezeServiceProvider.php',
+        'Laravel\\Breeze\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallCommand.php',
+        'Laravel\\Breeze\\Console\\InstallsApiStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsApiStack.php',
+        'Laravel\\Breeze\\Console\\InstallsBladeStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsBladeStack.php',
+        'Laravel\\Breeze\\Console\\InstallsInertiaStacks' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsInertiaStacks.php',
+        'Laravel\\Breeze\\Console\\InstallsLivewireStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsLivewireStack.php',
         'Laravel\\Pail\\Console\\Commands\\PailCommand' => __DIR__ . '/..' . '/laravel/pail/src/Console/Commands/PailCommand.php',
         'Laravel\\Pail\\Contracts\\Printer' => __DIR__ . '/..' . '/laravel/pail/src/Contracts/Printer.php',
         'Laravel\\Pail\\File' => __DIR__ . '/..' . '/laravel/pail/src/File.php',
