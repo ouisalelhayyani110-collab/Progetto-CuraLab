@@ -2,7 +2,7 @@
 echo "=== Setup CuraLab ==="
 
 # Installa le estensioni PHP necessarie per Laravel
-sudo apt-get install -y php8.2-mbstring php8.2-xml php8.2-curl php8.2-mysql php8.2-zip php8.2-bcmath
+sudo apt-get install -y php8.2-mbstring php8.2-xml php8.2-curl php8.2-mysql php8.2-zip php8.2-bcmath php8.2-intl
 
 # Installa le dipendenze del progetto
 cd /workspaces/Progetto-CuraLab/backend
