@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 // Authenticatable invece di Model: aggiunge tutto il necessario
 // per l'autenticazione (login, sessioni, remember me...)
 // SoftDeletes: aggiunge la logica del soft delete tramite deleted_at
 class Paziente extends Authenticatable
 {
-    use SoftDeletes;
+    use HasApiTokens, SoftDeletes;
 
     // Nome esplicito — Laravel pluralizzerebbe "pazientes"
     protected $table = 'pazienti';
