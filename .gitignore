@@ -3,6 +3,9 @@
 # Local, per-developer codebase knowledge base (generated, not shared)
 knowledge/
 
+# Claude Code local settings (per-developer)
+.claude/
+
 # dependencies
 node_modules
 .pnp
