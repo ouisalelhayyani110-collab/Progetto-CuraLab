@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend (lint · types · build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Lint
+        run: pnpm --filter frontend run lint
+
+      - name: Type check
+        run: pnpm --filter frontend exec tsc --noEmit
+
+      - name: Build
+        run: pnpm --filter frontend run build
+
+  backend:
+    name: Backend (migrate · seed · test)
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: curalab
+          MYSQL_USER: curalab
+          MYSQL_PASSWORD: curalab
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring, xml, bcmath, curl, intl, pdo_mysql, zip
+          tools: composer
+          coverage: none
+
+      - name: Install dependencies
+        working-directory: backend
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Prepare environment
+        working-directory: backend
+        run: |
+          cat > .env <<'EOF'
+          APP_NAME=CuraLab
+          APP_ENV=testing
+          APP_KEY=
+          APP_DEBUG=true
+          APP_URL=http://localhost:8000
+          APP_LOCALE=it
+          APP_FALLBACK_LOCALE=en
+          DB_CONNECTION=mysql
+          DB_HOST=127.0.0.1
+          DB_PORT=3306
+          DB_DATABASE=curalab
+          DB_USERNAME=curalab
+          DB_PASSWORD=curalab
+          SESSION_DRIVER=array
+          CACHE_STORE=array
+          QUEUE_CONNECTION=sync
+          MAIL_MAILER=log
+          EOF
+          php artisan key:generate
+
+      - name: Migrate & seed
+        working-directory: backend
+        run: php artisan migrate --seed --force
+
+      - name: Run tests
+        working-directory: backend
+        run: php artisan test
