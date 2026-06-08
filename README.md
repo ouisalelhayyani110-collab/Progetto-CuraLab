@@ -2,13 +2,11 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-Applicazione web di un **poliambulatorio** (progetto Engim 2026): i pazienti possono
+Applicazione web di un **studio medico** (progetto Engim 2026): i pazienti possono
 scoprire medici, servizi e sedi, registrarsi, accedere e **prenotare visite** dalla
 propria area personale.
 
 🎨 [Design su Canva](https://www.canva.com/design/DAHHeDhaGNE/w3SU2pnLftNqB4rD_uCyVw/edit?ui=e30)
-
-L'intera interfaccia e tutti i messaggi (compresi gli errori) sono in **italiano**.
 
 ---
 
