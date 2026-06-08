@@ -7,7 +7,7 @@ Sito progetto git di engim 2026
 [design](https://www.canva.com/design/DAHHeDhaGNE/w3SU2pnLftNqB4rD_uCyVw/edit?ui=e30)
 ## Tech Stack
 
-**Front-end:** NextJS, React, Typescript, React Query, Cypress, PostCSS, TailwindCSS, GSAP, Turbopack
+**Front-end:** NextJS, React, React Compiler, Typescript, React Query, Cypress, PostCSS, TailwindCSS, GSAP, Turbopack
 
 **Back-end:** Laravel, MySQL, PHP
 

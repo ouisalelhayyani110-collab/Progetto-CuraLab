@@ -1,15 +1,17 @@
-describe("Navigation", () => {
-  it("should navigate to the about page", () => {
-    // Start from the index page
+describe("Navigazione CuraLab", () => {
+  it("dalla home raggiunge la pagina Chi siamo", () => {
     cy.visit("/");
 
-    // Find a link with an href attribute containing "about" and click it
-    cy.get('a[href*="/about"]').click();
+    // Il link "Chi siamo" è nell'header
+    cy.get('a[href*="/chi-siamo"]').first().click();
 
-    // The new url should include "/about"
-    cy.url().should("include", "/about");
+    cy.url().should("include", "/chi-siamo");
+    cy.contains("Chi siamo");
+  });
 
-    // The new page should contain an h1 with "About page"
-    cy.get("div").contains("About");
+  it("mostra l'header del brand", () => {
+    cy.visit("/");
+    cy.contains("CuraLab");
+    cy.get('a[href="/medici"]').should("exist");
   });
 });

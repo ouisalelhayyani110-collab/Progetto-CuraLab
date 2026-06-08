@@ -1,6 +1,110 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #99d9d9;
-    --text-primary: white;
+  /* Brand palette — pastel teal, matching the Canva mockups.
+     NOTE: white-on-primary does not meet WCAG AA contrast (deliberate trade-off
+     for design fidelity, chosen over the deeper AA-compliant palette). */
+  --color-primary: #5fb8b8;
+  --color-primary-dark: #3e9b9b;
+  --color-primary-light: #99d9d9;
+  --color-mint: #cfede8;
+  --color-mint-soft: #e7f5f2;
+  --color-heading: #1b2a4a;
+  --color-surface: #ffffff;
+
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-mint-soft);
+    color: var(--color-heading);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+  /* Visible keyboard focus on every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Pointer affordance — Tailwind v4 resets <button> cursor to default */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  label:has(> input[type="checkbox"]),
+  label:has(> input[type="radio"]),
+  summary {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* Smooth, consistent hover/active transitions on interactive elements */
+  a,
+  button,
+  [role="button"],
+  select,
+  input,
+  textarea {
+    transition-property: color, background-color, border-color, box-shadow,
+      transform, opacity, filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
+
+.brand-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-primary-light) 0%,
+    var(--color-primary) 100%
+  );
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hover lift + press feedback on buttons and pill CTAs.
+   Excludes elements positioned with transform utilities (e.g. carousel arrows). */
+@media (hover: hover) {
+  button:not(:disabled):not([class*="translate"]):hover,
+  a[class*="rounded-full"]:not([class*="translate"]):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -8px rgba(31, 93, 91, 0.45);
+  }
+}
+button:not(:disabled):not([class*="translate"]):active,
+a[class*="rounded-full"]:not([class*="translate"]):active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

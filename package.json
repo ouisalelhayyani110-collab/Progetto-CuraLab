@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "frontend": "pnpm --filter frontend",
-    "backend": "pnpm --filter backend"
+    "backend": "pnpm --filter backend",
+    "dev": "trap 'kill 0' EXIT INT TERM; pnpm --filter frontend run dev & pnpm --filter backend run serve & wait",
+    "dev:web": "pnpm --filter frontend run dev",
+    "dev:api": "pnpm --filter backend run serve"
   },
   "keywords": [],
   "author": "",
